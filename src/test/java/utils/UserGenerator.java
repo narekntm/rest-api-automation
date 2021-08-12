@@ -28,12 +28,30 @@ public class UserGenerator {
         status = getRandom(STATUS);
     }
 
-    public UserCreateRequest generateUserRequest() {
+    public UserCreateRequest generateValidUserRequest() {
         return UserCreateRequest.builder()
                 .name(name)
                 .email(email)
                 .gender(gender)
                 .status(status)
                 .build();
+    }
+
+    public UserCreateRequest generateInvalidUserRequest(String invalidField) {
+        switch (invalidField) {
+            case "name":
+                name = null;
+                break;
+            case "email":
+                email = null;
+                break;
+            case "gender":
+                gender = null;
+                break;
+            case "status":
+                status = null;
+                break;
+        }
+        return generateValidUserRequest();
     }
 }
